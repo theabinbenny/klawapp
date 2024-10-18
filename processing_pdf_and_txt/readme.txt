@@ -1,0 +1,1 @@
+this folder contains programs to process files. it contains programs to process pdf,txt, image based files, files with equations, etc.

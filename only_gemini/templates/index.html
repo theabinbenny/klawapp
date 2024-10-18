@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+</head>
+<body>
+    <h1>Simple Chatbot</h1>
+    <div>
+        <textarea id="user_input" rows="4" cols="50" placeholder="Type your message here..."></textarea><br>
+        <button onclick="sendMessage()">Send</button>
+    </div>
+    <h2>Response:</h2>
+    <p id="response"></p>
+
+    <script>
+        async function sendMessage() {
+            const userInput = document.getElementById('user_input').value;
+            const responseElement = document.getElementById('response');
+
+            const response = await fetch('/ask', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'user_input=' + encodeURIComponent(userInput),
+            });
+
+            const data = await response.json();
+            responseElement.innerText = data.response;
+        }
+    </script>
+</body>
+</html>
